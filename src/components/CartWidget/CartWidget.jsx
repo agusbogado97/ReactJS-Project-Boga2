@@ -1,4 +1,5 @@
 import { BsCart} from "react-icons/bs";
+
 const CartWidget = () => {
     return(
          <div>
