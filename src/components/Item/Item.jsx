@@ -14,7 +14,6 @@ const Item = ({ item }) => {
             <br />${item.price}
           </p>
         </div>
-
         <Link to={"/item/" + item.id} className="botonAddCard">
           <button className="botn">Agregar al carrito</button>
         </Link>
@@ -22,6 +21,7 @@ const Item = ({ item }) => {
     </div>
   );
 };
+
 Item.propTypes = {
   item: PropTypes.object.isRequired,
 };

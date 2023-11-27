@@ -1,44 +1,50 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Products from "../ProductosJson/Productos.json";
 import ItemList from "../ItemList/ItemList";
-
+import Loading from "../Loading/Loading";
+import { getFirestore, collection, getDocs, where, query } from "firebase/firestore";
 // eslint-disable-next-line react/prop-types
 const ItemListContainer = ({ greeting }) => {
-  const [item, setItem] = useState([]);
-  const { id } = useParams();
+  const [item, setItem] = useState([])
+    const [loading, setLoading] = useState(true)
+    const { id } = useParams()
 
-  useEffect(() => {
+    useEffect(() => {
+      setLoading(true);
+    
+      const queryDb = getFirestore();
+      const queryCollect = collection(queryDb, 'products');
+    
+      let queryFilter;
+    
+      if (id) {
+        queryFilter = query(queryCollect, where('categoryId', '==', id));
+      }
+    
     const fetchData = async () => {
       try {
-        let Data;
-        if (id) {
-          Data = Products.filter((item) => item.category === id);
-        } else {
-          Data = Products;
+        const result = id ? await getDocs(queryFilter) : await getDocs(queryCollect);
+        setItem(result.docs.map((p) => ({ id: p.id, ...p.data() })));
+      }catch (error) {
+        console.error("ERROR", error);
+      }finally {
+        setLoading(false);
         }
-
-        // Agregar un retraso de 2 segundos antes de establecer los datos
-        setTimeout(() => {
-          setItem(Data);
-        }, 1500);
-      } catch (error) {
-        console.log("error", error);
-      }
-    };
-    fetchData();
-  }, [id]);
-
-  return (
-    <div>
-      <div className="greetdiv">
-        <h2>{greeting}</h2>
-      </div>
+      };
+      setTimeout(() => {
+        fetchData();
+      }, 1500);
+    
+    }, [id]);
+    
+    
+    if (loading) return <Loading />
+    return (
       <div>
+        <h2 className="greetdiv">{greeting}</h2>
         <ItemList item={item} />
       </div>
-    </div>
-  );
-};
+    )
+}
 
 export default ItemListContainer;

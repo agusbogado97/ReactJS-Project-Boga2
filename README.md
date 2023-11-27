@@ -1,8 +1,8 @@
-# React + Vite
+# Proyecto Final React JS Coderhouse
+## Agustín Bogado
+## Descripcion:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Este proyecto es un e-commerce especializado en la venta de software, diseñado y desarrollado utilizando ReactJS. La aplicación incorpora características esenciales para un entorno de compras en línea, aprovechando tecnologías modernas como React Router DOM para una navegación fluida, Firebase para la gestión de datos y autenticación, Swal.fire para notificaciones interactivas, y Netlify como plataforma de alojamiento.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+#### Link repo: https://github.com/agusbogado97/ReactJS-Project-Boga2
+#### Link Netlify: https://todo-software.netlify.app/
